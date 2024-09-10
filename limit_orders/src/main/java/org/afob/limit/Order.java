@@ -41,7 +41,8 @@ public class Order extends LimitOrderAgent {
 		 Order order = new Order(ec);
 
 		order.priceTick("IBM", new BigDecimal(90));
-		
+		order.priceTick("IBM", new BigDecimal(110));
+
 		order.addOrder("B","product1",150, 100);
 		order.addOrder("B","product2",50, 100);
 

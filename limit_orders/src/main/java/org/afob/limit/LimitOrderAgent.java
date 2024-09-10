@@ -16,16 +16,23 @@ public class LimitOrderAgent implements PriceListener {
 
     @Override
     public void priceTick(String productId, BigDecimal price) {
-
+    	try {
     	BigDecimal limit = new BigDecimal(100);
     	if (limit.compareTo(price) == 1) { 
-    		try {
 				System.out.println("Buying "+productId+" @ $"+price);
 				ec.buy(productId, 1000);
-			} catch (ExecutionException e) {
-				System.out.println("Environment error occured: "+e);
 			}
+    	else if(limit.compareTo(price) == 0){
+			System.out.println("Limit and price are equal");
     	}
+    	else {
+    		System.out.println("Selling "+productId+" @ $"+price);
+			ec.sell(productId, 1000);
+    	}
+    	}
+    	catch (ExecutionException e) {
+			System.out.println("Environment error occured: "+e);
+		}
     	} 
 
     }
