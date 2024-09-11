@@ -15,7 +15,7 @@ public class LimitOrderAgent implements PriceListener {
 
 
     @Override
-    public void priceTick(String productId, BigDecimal price) {
+    public void priceTick(String productId, BigDecimal price) throws ExecutionException {
     	try {
     	BigDecimal limit = new BigDecimal(100);
     	if (limit.compareTo(price) == 1) { 
@@ -31,7 +31,7 @@ public class LimitOrderAgent implements PriceListener {
     	}
     	}
     	catch (ExecutionException e) {
-			System.out.println("Environment error occured: "+e);
+			throw new ExecutionException("Expected error occured");
 		}
     	} 
 

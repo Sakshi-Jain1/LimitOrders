@@ -29,7 +29,14 @@ public class LimitOrderAgentTest{
     @Test
     public void priceTickTest() {
     	BigDecimal limit = new BigDecimal(50);
-    	assertThrows(ExecutionException.class, () -> limitOrderAgent.priceTick("product1",limit));    	
+    	assertThrows("Expected exception occured in priceTick():",ExecutionException.class, () -> limitOrderAgent.priceTick("product1",limit));    
+    	assertThrows("Unexpected exception occured in priceTick():",Exception.class, () -> limitOrderAgent.priceTick(null,null));    	
+
     }
     
+    @Test
+    public void addOrderTest() {
+    	assertThrows("Expected exception occured in addOrder():",ExecutionException.class, () -> order.addOrder("B","product1",100, 100));
+    	assertThrows("Unexpected exception occured in addOrder():",Exception.class, () -> order.addOrder(null,null,0, 0));    }
+
 }

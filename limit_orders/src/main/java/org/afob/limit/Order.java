@@ -15,7 +15,7 @@ public class Order extends LimitOrderAgent {
 	}
 
 	
-	public void addOrder(String buyOrSell, String productId, int price, int limit) {
+	public void addOrder(String buyOrSell, String productId, int price, int limit) throws ExecutionException {
 		
 			try {
 				if(buyOrSell.equalsIgnoreCase("B"))
@@ -32,11 +32,11 @@ public class Order extends LimitOrderAgent {
 				}
 
 			} catch (ExecutionException e) {
-				System.out.println("Environment error occured: "+e);
+				throw new ExecutionException("Expected exception occured");
 			}
 	}
 	
-	 public static void main(String[] args) {
+	 public static void main(String[] args) throws ExecutionException {
 		 ExecutionClient ec = new ExecutionClient();
 		 Order order = new Order(ec);
 
